@@ -5,7 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ulcinj Residence | Panoramska vila u Ulcinju</title>
   
-  <!-- Фавиконки и иконки для устройств -->
+  <!-- GOOGLE ANALYTICS (GA4) -->
+  <!-- Замените G-XXXXXXXXXX на ваш идентификатор из Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <!-- Фавиконки -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -61,14 +71,25 @@
     li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
     li strong { color: var(--text-main); font-weight: 500; }
     
+    /* Стили интерактивной галереи */
     .gallery-scroll-container { width: 100%; overflow-x: auto; padding-bottom: 8px; margin: 1.5rem 0; scrollbar-width: thin; scrollbar-color: var(--accent) var(--border-color); }
     .gallery-scroll-container::-webkit-scrollbar { height: 6px; }
     .gallery-scroll-container::-webkit-scrollbar-track { background: var(--border-color); border-radius: 3px; }
     .gallery-scroll-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
     
     .gallery-grid { display: flex; gap: 12px; width: max-content; }
-    .gallery-grid img { width: 280px; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); transition: var(--transition); flex-shrink: 0; }
-    .gallery-grid img:hover { transform: scale(1.02); border-color: rgba(255,255,255,0.3); }
+    .gallery-grid img { width: 280px; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); transition: var(--transition); flex-shrink: 0; cursor: pointer; }
+    .gallery-grid img:hover { transform: scale(1.03); border-color: var(--accent); }
+
+    /* Modal / Всплывающий просмотрщик фото */
+    .lightbox-modal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); justify-content: center; align-items: center; }
+    .lightbox-modal.active { display: flex; }
+    .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: 8px; border: 1px solid var(--border-color); object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 25px; color: var(--text-main); font-size: 2rem; cursor: pointer; line-height: 1; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: var(--text-main); font-size: 2.5rem; cursor: pointer; padding: 1rem; user-select: none; transition: var(--transition); }
+    .lightbox-nav:hover { color: var(--accent); }
+    .lightbox-prev { left: 15px; }
+    .lightbox-next { right: 15px; }
 
     .map-container { margin-top: 1.5rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
     .map-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--text-main); color: var(--bg-body); text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; margin-top: 1.2rem; transition: var(--transition); }
@@ -160,56 +181,29 @@
     <div class="card" id="gallery-section">
       <div class="lang lang-cg active">
         <div class="card-header-flex"><h2>Galerija</h2><span class="floor-index">FOTO</span></div>
-        <p class="card-subtitle">Pregledajte osnovne fotografije eksterijera i enterijera vile:</p>
-        <div class="gallery-scroll-container">
-          <div class="gallery-grid">
-            <img src="photo1.jpg" alt="Kuća">
-            <img src="photo2.jpg" alt="More">
-            <img src="photo3.jpg" alt="Enterijer">
-            <img src="photo4.jpg" alt="Bašta">
-            <img src="photo5.jpg" alt="Foto 5">
-            <img src="photo6.jpg" alt="Foto 6">
-            <img src="photo7.jpg" alt="Foto 7">
-            <img src="photo8.jpg" alt="Foto 8">
-            <img src="photo9.jpg" alt="Foto 9">
-            <img src="photo10.jpg" alt="Foto 10">
-          </div>
-        </div>
+        <p class="card-subtitle">Kliknite na bilo koju fotografiju za pregled u punoj veličini:</p>
       </div>
       <div class="lang lang-ru">
         <div class="card-header-flex"><h2>Галерея</h2><span class="floor-index">ФОТО</span></div>
-        <p class="card-subtitle">Ознакомьтесь с превью экстерьера и интерьеров виллы:</p>
-        <div class="gallery-scroll-container">
-          <div class="gallery-grid">
-            <img src="photo1.jpg" alt="Вид виллы">
-            <img src="photo2.jpg" alt="Вид на море">
-            <img src="photo3.jpg" alt="Интерьер">
-            <img src="photo4.jpg" alt="Двор и сад">
-            <img src="photo5.jpg" alt="Фото 5">
-            <img src="photo6.jpg" alt="Фото 6">
-            <img src="photo7.jpg" alt="Фото 7">
-            <img src="photo8.jpg" alt="Фото 8">
-            <img src="photo9.jpg" alt="Фото 9">
-            <img src="photo10.jpg" alt="Фото 10">
-          </div>
-        </div>
+        <p class="card-subtitle">Нажмите на любую фотографию для просмотра в полном размере:</p>
       </div>
       <div class="lang lang-en">
         <div class="card-header-flex"><h2>Gallery</h2><span class="floor-index">PHOTOS</span></div>
-        <p class="card-subtitle">Explore exterior and interior photo previews of the villa:</p>
-        <div class="gallery-scroll-container">
-          <div class="gallery-grid">
-            <img src="photo1.jpg" alt="House">
-            <img src="photo2.jpg" alt="Sea">
-            <img src="photo3.jpg" alt="Interior">
-            <img src="photo4.jpg" alt="Garden">
-            <img src="photo5.jpg" alt="Photo 5">
-            <img src="photo6.jpg" alt="Photo 6">
-            <img src="photo7.jpg" alt="Photo 7">
-            <img src="photo8.jpg" alt="Photo 8">
-            <img src="photo9.jpg" alt="Photo 9">
-            <img src="photo10.jpg" alt="Photo 10">
-          </div>
+        <p class="card-subtitle">Click on any photograph to view in full resolution:</p>
+      </div>
+
+      <div class="gallery-scroll-container">
+        <div class="gallery-grid">
+          <img src="photo1.jpg" alt="Photo 1" onclick="openLightbox(0)">
+          <img src="photo2.jpg" alt="Photo 2" onclick="openLightbox(1)">
+          <img src="photo3.jpg" alt="Photo 3" onclick="openLightbox(2)">
+          <img src="photo4.jpg" alt="Photo 4" onclick="openLightbox(3)">
+          <img src="photo5.jpg" alt="Photo 5" onclick="openLightbox(4)">
+          <img src="photo6.jpg" alt="Photo 6" onclick="openLightbox(5)">
+          <img src="photo7.jpg" alt="Photo 7" onclick="openLightbox(6)">
+          <img src="photo8.jpg" alt="Photo 8" onclick="openLightbox(7)">
+          <img src="photo9.jpg" alt="Photo 9" onclick="openLightbox(8)">
+          <img src="photo10.jpg" alt="Photo 10" onclick="openLightbox(9)">
         </div>
       </div>
     </div>
@@ -409,12 +403,47 @@
     </div>
   </div>
 
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <span class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1, event)">&#10094;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="Enlarged image">
+    <span class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1, event)">&#10095;</span>
+  </div>
+
   <script>
     function setLanguage(lang) {
       document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
       document.getElementById('btn-' + lang).classList.add('active');
+    }
+
+    /* Скрипт всплывающей галереи */
+    const galleryImages = [
+      'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg',
+      'photo6.jpg', 'photo7.jpg', 'photo8.jpg', 'photo9.jpg', 'photo10.jpg'
+    ];
+    let currentImageIndex = 0;
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+      document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox(e) {
+      if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('active');
+      }
+    }
+
+    function changeLightboxImage(direction, e) {
+      e.stopPropagation();
+      currentImageIndex += direction;
+      if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+      if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+      document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
     }
   </script>
 </body>
