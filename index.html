@@ -6,13 +6,12 @@
   <title>Ulcinj Residence | Panoramska vila u Ulcinju</title>
   
   <!-- GOOGLE ANALYTICS (GA4) -->
-  <!-- Замените G-XXXXXXXXXX на ваш идентификатор из Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-83HFD0JK8J"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-83HFD0JK8J');
   </script>
 
   <!-- Фавиконки -->
@@ -71,7 +70,6 @@
     li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
     li strong { color: var(--text-main); font-weight: 500; }
     
-    /* Стили интерактивной галереи */
     .gallery-scroll-container { width: 100%; overflow-x: auto; padding-bottom: 8px; margin: 1.5rem 0; scrollbar-width: thin; scrollbar-color: var(--accent) var(--border-color); }
     .gallery-scroll-container::-webkit-scrollbar { height: 6px; }
     .gallery-scroll-container::-webkit-scrollbar-track { background: var(--border-color); border-radius: 3px; }
@@ -81,7 +79,6 @@
     .gallery-grid img { width: 280px; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); transition: var(--transition); flex-shrink: 0; cursor: pointer; }
     .gallery-grid img:hover { transform: scale(1.03); border-color: var(--accent); }
 
-    /* Modal / Всплывающий просмотрщик фото */
     .lightbox-modal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); justify-content: center; align-items: center; }
     .lightbox-modal.active { display: flex; }
     .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: 8px; border: 1px solid var(--border-color); object-fit: contain; }
@@ -419,7 +416,6 @@
       document.getElementById('btn-' + lang).classList.add('active');
     }
 
-    /* Скрипт всплывающей галереи */
     const galleryImages = [
       'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg',
       'photo6.jpg', 'photo7.jpg', 'photo8.jpg', 'photo9.jpg', 'photo10.jpg'
