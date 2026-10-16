@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ulcinj Residence | Панорамная вилла в Ульцине</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f141c;
+      --bg-card: #171d28;
+      --bg-body: #0b0e14;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #c5a880;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.7; padding-bottom: 40px; scroll-behavior: smooth; }
+    header { background: rgba(11, 14, 20, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1rem 2.5rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+    
+    .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; cursor: pointer; }
+    .logo-icon { display: flex; align-items: center; justify-content: center; }
+    .logo-text-block { display: flex; flex-direction: column; }
+    .logo-title { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-main); line-height: 1.2; }
+    .logo-subtitle { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: 3px; font-weight: 500; }
+
+    .lang-switch { display: flex; gap: 6px; }
+    .lang-switch button { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 0.4rem 0.8rem; cursor: pointer; border-radius: 4px; font-size: 0.85rem; font-weight: 500; transition: var(--transition); }
+    .lang-switch button.active, .lang-switch button:hover { background: var(--text-main); color: var(--bg-body); border-color: var(--text-main); }
+    
+    .hero { position: relative; min-height: 100vh; background: url('photo1.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: flex-end; padding: 6rem 2rem 4rem; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,14,20,0.3) 0%, rgba(11,14,20,0.75) 50%, rgba(11,14,20,0.98) 100%); z-index: 1; }
+    .hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; width: 100%; text-align: left; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; }
+    .hero p { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--text-muted); max-width: 800px; margin-bottom: 2rem; font-weight: 300; }
+    .features-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+    .badge { background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(8px); padding: 0.55rem 1.1rem; border-radius: 30px; font-size: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.12); color: var(--text-main); text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px; }
+    .badge:hover { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+    
+    .container { max-width: 1100px; margin: -2rem auto 0; padding: 0 1.5rem; position: relative; z-index: 3; }
+    .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    
+    .card-header-flex { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border-color); padding-bottom: 1.2rem; margin-bottom: 1.5rem; gap: 1rem; }
+    .card h2 { color: var(--text-main); font-size: 1.5rem; font-weight: 600; line-height: 1.3; }
+    .card-subtitle { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 300; }
+    .floor-index { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 600; text-decoration: none; transition: var(--transition); flex-shrink: 0; padding-top: 4px; }
+    
+    ul { list-style: none; margin-bottom: 1.5rem; }
+    li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: var(--text-muted); font-size: 0.95rem; }
+    li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+    li strong { color: var(--text-main); font-weight: 500; }
+    
+    .gallery-scroll-container { width: 100%; overflow-x: auto; padding-bottom: 8px; margin: 1.5rem 0; scrollbar-width: thin; scrollbar-color: var(--accent) var(--border-color); }
+    .gallery-scroll-container::-webkit-scrollbar { height: 6px; }
+    .gallery-scroll-container::-webkit-scrollbar-track { background: var(--border-color); border-radius: 3px; }
+    .gallery-scroll-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+    
+    .gallery-grid { display: flex; gap: 12px; width: max-content; }
+    .gallery-grid img { width: 280px; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); transition: var(--transition); flex-shrink: 0; }
+    .gallery-grid img:hover { transform: scale(1.02); border-color: rgba(255,255,255,0.3); }
+
+    .map-container { margin-top: 1.5rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+    .map-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--text-main); color: var(--bg-body); text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; margin-top: 1.2rem; transition: var(--transition); }
+    .map-btn:hover { background: var(--accent); }
+    
+    .lang { display: none; }
+    .lang.active { display: block; }
+    @media (max-width: 768px) {
+      header { padding: 1rem 1.2rem; }
+      .hero { padding: 5rem 1.2rem 2.5rem; min-height: auto; }
+      .card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo-container">
+      <div class="logo-icon">
+        <svg width="32" height="22" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 18L18 4L34 18" stroke="#c5a880" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 13.5V20" stroke="#c5a880" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M12 10V20" stroke="#c5a880" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 7V20" stroke="#c5a880" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M26 9.5V14" stroke="#c5a880" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text-block">
+        <span class="logo-title">Ulcinj Residence</span>
+        <span class="lang lang-ru active logo-subtitle">Инвестиции в будущее</span>
+        <span class="lang lang-cg logo-subtitle">Investicije u budućnost</span>
+        <span class="lang lang-en logo-subtitle">Investment in the Future</span>
+      </div>
+    </a>
+    <div class="lang-switch">
+      <button onclick="setLanguage('ru')" id="btn-ru" class="active">RU</button>
+      <button onclick="setLanguage('cg')" id="btn-cg">CG</button>
+      <button onclick="setLanguage('en')" id="btn-en">EN</button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="lang lang-ru active">
+        <h1>Трёхэтажная вилла с панорамным видом на море</h1>
+        <p>Просторная резиденция в живописной части Ульциня с приватной огороженной территорией, гаражом, паркингом на 3 автомобиля, садом и зоной под бассейн.</p>
+        <div class="features-badges">
+          <span class="badge">Вид на море</span>
+          <span class="badge">Гараж</span>
+          <span class="badge">Закрытая территория</span>
+          <span class="badge">Сад</span>
+          <span class="badge">Три отдельных этажа</span>
+          <a href="#gallery-section" class="badge">Галерея фото</a>
+          <a href="#location-section" class="badge">📍 Локация</a>
+        </div>
+      </div>
+      <div class="lang lang-cg">
+        <h1>Troetažna vila sa panoramskim pogledom na more</h1>
+        <p>Prostrana rezidencija u mirnom dijelu Ulcinja sa ograđenim placem, garažom, parkingom za 3 automobila, baštom i prostorom za bazen.</p>
+        <div class="features-badges">
+          <span class="badge">Pogled na more</span>
+          <span class="badge">Garaža</span>
+          <span class="badge">Ograđen plac</span>
+          <span class="badge">Bašta</span>
+          <span class="badge">Tri zasebna sprata</span>
+          <a href="#gallery-section" class="badge">Galerija</a>
+          <a href="#location-section" class="badge">📍 Lokacija</a>
+        </div>
+      </div>
+      <div class="lang lang-en">
+        <h1>3-Story Villa with Panoramic Sea Views</h1>
+        <p>Spacious residence in a prime area of Ulcinj featuring a private fenced territory, garage, parking for 3 cars, garden, and a designated pool plot.</p>
+        <div class="features-badges">
+          <span class="badge">Sea View</span>
+          <span class="badge">Garage</span>
+          <span class="badge">Fenced Territory</span>
+          <span class="badge">Garden</span>
+          <span class="badge">Three Separate Floors</span>
+          <a href="#gallery-section" class="badge">Gallery</a>
+          <a href="#location-section" class="badge">📍 Location</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- GALLERY SECTION -->
+    <div class="card" id="gallery-section">
+      <div class="lang lang-ru active">
+        <div class="card-header-flex"><h2>Галерея</h2><span class="floor-index">ФОТО</span></div>
+        <p class="card-subtitle">Ознакомьтесь с превью экстерьера и интерьеров виллы:</p>
+        <div class="gallery-scroll-container">
+          <div class="gallery-grid">
+            <img src="photo1.jpg" alt="Вид виллы">
+            <img src="photo2.jpg" alt="Вид на море">
+            <img src="photo3.jpg" alt="Интерьер">
+            <img src="photo4.jpg" alt="Двор и сад">
+            <img src="photo5.jpg" alt="Фото 5">
+            <img src="photo6.jpg" alt="Фото 6">
+            <img src="photo7.jpg" alt="Фото 7">
+            <img src="photo8.jpg" alt="Фото 8">
+            <img src="photo9.jpg" alt="Фото 9">
+            <img src="photo10.jpg" alt="Фото 10">
+          </div>
+        </div>
+      </div>
+      <div class="lang lang-cg">
+        <div class="card-header-flex"><h2>Galerija</h2><span class="floor-index">FOTO</span></div>
+        <p class="card-subtitle">Pregledajte osnovne fotografije eksterijera i enterijera vile:</p>
+        <div class="gallery-scroll-container">
+          <div class="gallery-grid">
+            <img src="photo1.jpg" alt="Kuća">
+            <img src="photo2.jpg" alt="More">
+            <img src="photo3.jpg" alt="Enterijer">
+            <img src="photo4.jpg" alt="Bašta">
+            <img src="photo5.jpg" alt="Foto 5">
+            <img src="photo6.jpg" alt="Foto 6">
+            <img src="photo7.jpg" alt="Foto 7">
+            <img src="photo8.jpg" alt="Foto 8">
+            <img src="photo9.jpg" alt="Foto 9">
+            <img src="photo10.jpg" alt="Foto 10">
+          </div>
+        </div>
+      </div>
+      <div class="lang lang-en">
+        <div class="card-header-flex"><h2>Gallery</h2><span class="floor-index">PHOTOS</span></div>
+        <p class="card-subtitle">Explore exterior and interior photo previews of the villa:</p>
+        <div class="gallery-scroll-container">
+          <div class="gallery-grid">
+            <img src="photo1.jpg" alt="House">
+            <img src="photo2.jpg" alt="Sea">
+            <img src="photo3.jpg" alt="Interior">
+            <img src="photo4.jpg" alt="Garden">
+            <img src="photo5.jpg" alt="Photo 5">
+            <img src="photo6.jpg" alt="Photo 6">
+            <img src="photo7.jpg" alt="Photo 7">
+            <img src="photo8.jpg" alt="Photo 8">
+            <img src="photo9.jpg" alt="Photo 9">
+            <img src="photo10.jpg" alt="Photo 10">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1st FLOOR -->
+    <div class="card">
+      <div class="lang lang-ru active">
+        <div class="card-header-flex"><h2>Первый этаж</h2><span class="floor-index">УРОВЕНЬ 01</span></div>
+        <p class="card-subtitle">Изолированный автономный апартамент с собственным входом снаружи. Идеальное решение для гостей или сдачи в аренду.</p>
+        <ul>
+          <li>Просторная гостиная зона с кухней, кладовой и выходом во внутренний двор.</li>
+          <li>Две спальни: стандартная комната и мастер-спальня с индивидуальным санузлом (душ, туалет).</li>
+          <li>Дополнительный общий коридор и гостевой санузел (душ, туалет).</li>
+          <li>Естественный микроклимат и прохлада в жаркие летние месяцы.</li>
+        </ul>
+      </div>
+      <div class="lang lang-cg">
+        <div class="card-header-flex"><h2>Prvi sprat</h2><span class="floor-index">NIVO 01</span></div>
+        <p class="card-subtitle">Zaseban i nezavisan apartman sa spoljnim ulazom. Odlično rješenje za goste ili dugoročni/kratkoročni najam.</p>
+        <ul>
+          <li>Prostrana dnevna soba sa kuhinjom, ostavom i izlazom u dvorište.</li>
+          <li>Dvije spavaće sobe: standardna i master soba sa sopstvenim kupatilom (tuš, WC).</li>
+          <li>Zajednički hodnik i kupatilo (tuš, WC).</li>
+          <li>Prirodna svježina i prijatna temperatura tokom ljeta.</li>
+        </ul>
+      </div>
+      <div class="lang lang-en">
+        <div class="card-header-flex"><h2>First Floor</h2><span class="floor-index">LEVEL 01</span></div>
+        <p class="card-subtitle">Self-contained autonomous apartment with a private exterior entrance. Ideal for guests or rental income.</p>
+        <ul>
+          <li>Spacious living area with kitchen, pantry, and direct yard access.</li>
+          <li>Two bedrooms: standard room and master bedroom with en-suite bathroom (shower, WC).</li>
+          <li>Additional hallway and shared full bathroom (shower, WC).</li>
+          <li>Naturally cool indoor climate during the summer months.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2nd FLOOR -->
+    <div class="card">
+      <div class="lang lang-ru active">
+        <div class="card-header-flex"><h2>Второй этаж</h2><span class="floor-index">УРОВЕНЬ 02</span></div>
+        <p class="card-subtitle">Основной жилой уровень виллы. Соединен внутренней лестницей с третьим этажом, а также имеет независимый вход.</p>
+        <ul>
+          <li>Входная зона: гостевой туалет и постирочный узел со стиральной машиной.</li>
+          <li>Кухня-гостиная: полный комплект встроенной техники, обеденная группа.</li>
+          <li>Две спальни: детская комната и главная спальня.</li>
+          <li>Большой санузел: угловая ванна, раковина, туалет (двойной доступ из спальни и прихожей).</li>
+          <li>Обширная терраса, огибающая весь периметр второго этажа.</li>
+          <li>Индивидуальные кондиционеры в каждом помещении.</li>
+        </ul>
+      </div>
+      <div class="lang lang-cg">
+        <div class="card-header-flex"><h2>Drugi sprat</h2><span class="floor-index">NIVO 02</span></div>
+        <p class="card-subtitle">Glavni stambeni nivo povezan unutrašnjim stepeništem sa trećim spratom, sa mogućnošću zasebnog ulaza.</p>
+        <ul>
+          <li>Ulazni dio: gostinski WC i prostor za veš mašinu.</li>
+          <li>Dnevni boravak i kuhinja sa kompletnom ugradnom tehnikom.</li>
+          <li>Dvije spavaće sobe: dječija i glavna soba.</li>
+          <li>Veliko kupatilo: ugaona kada, WC (dvostruki ulaz iz sobe i hodnika).</li>
+          <li>Prostrana terasa duž cijelog obima sprata.</li>
+          <li>Klima uređaji u svim prostorijama.</li>
+        </ul>
+      </div>
+      <div class="lang lang-en">
+        <div class="card-header-flex"><h2>Second Floor</h2><span class="floor-index">LEVEL 02</span></div>
+        <p class="card-subtitle">Main residential level connected internally to the third floor, complete with an optional separate exterior entrance.</p>
+        <ul>
+          <li>Entrance foyer: guest toilet and laundry station.</li>
+          <li>Open-plan living & kitchen equipped with premium appliances.</li>
+          <li>Two bedrooms: children's room and master bedroom.</li>
+          <li>Large bathroom: corner bathtub, WC (dual entry from bedroom and hallway).</li>
+          <li>Expansive wrap-around terrace spanning the entire perimeter.</li>
+          <li>Independent air conditioning units in all rooms.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3rd FLOOR -->
+    <div class="card">
+      <div class="lang lang-ru active">
+        <div class="card-header-flex"><h2>Третий этаж</h2><span class="floor-index">УРОВЕНЬ 03</span></div>
+        <p class="card-subtitle">Верхний видовой уровень с потрясающими панорамными видами на морское побережье.</p>
+        <ul>
+          <li>Уютная лаунж-зона с мини-кухней, мягкой мебелью и мини-холодильником.</li>
+          <li>Открытая панорамная терраса с захватывающим видом на Адриатику.</li>
+          <li>Две спальни: твин-комната с двумя кроватями и главная спальня с двуспальной кроватью.</li>
+          <li>Большой санузел: душевая кабина, туалет и два входа (из мастер-спальни и коридора).</li>
+          <li>Климат-контроль (кондиционеры в каждой комнате).</li>
+        </ul>
+      </div>
+      <div class="lang lang-cg">
+        <div class="card-header-flex"><h2>Treći sprat</h2><span class="floor-index">NIVO 03</span></div>
+        <p class="card-subtitle">Gornji nivo sa impresivnim i neometanim pogledom na otvoreno more.</p>
+        <ul>
+          <li>Dnevni kutak sa mini frižiderom i garniturom za sjedenje.</li>
+          <li>Otvorena panoramska terasa sa pogledom na Jadransko more.</li>
+          <li>Dvije spavaće sobe: soba sa dva ležaja i glavna spavaća soba sa bračnim krevetom.</li>
+          <li>Veliko kupatilo: tuš kabina, WC i dva ulaza (iz master sobe i hodnika).</li>
+          <li>Klima uređaji u svim prostorijama.</li>
+        </ul>
+      </div>
+      <div class="lang lang-en">
+        <div class="card-header-flex"><h2>Third Floor</h2><span class="floor-index">LEVEL 03</span></div>
+        <p class="card-subtitle">Top panoramic level delivering magnificent unobstructed views across the Adriatic coastline.</p>
+        <ul>
+          <li>Lounge area featuring a seating arrangement and mini-fridge.</li>
+          <li>Open-air panoramic terrace overlooking the sea.</li>
+          <li>Two bedrooms: twin bedroom and a double master bedroom.</li>
+          <li>Large bathroom: walk-in shower, WC, and dual doors (master room and hallway access).</li>
+          <li>Climate-controlled with AC units in every room.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- GROUNDS & UTILITIES -->
+    <div class="card">
+      <div class="lang lang-ru active">
+        <div class="card-header-flex"><h2>Территория и коммуникации</h2><span class="floor-index">ДЕТАЛИ</span></div>
+        <ul>
+          <li><strong>Приватный участок:</strong> Полностью огороженная территория с калиткой и освещением.</li>
+          <li><strong>Парковка:</strong> Капитальный крытый гараж на 1 автомобиль плюс площадка во дворе на 3 машины.</li>
+          <li><strong>Зона бассейна:</strong> Подготовленный ровный участок за дом под установку частного бассейна.</li>
+          <li><strong>Сад:</strong> На участке высажены плодоносящие деревья и зелень (пальмы, лаймы, лавр, ежевика).</li>
+          <li><strong>Инженерные сети:</strong> Централизованное городское водоснабжение и полноценная городская канализация.</li>
+          <li><strong>Надежность:</strong> Стабильное давление воды и бесперебойное электроснабжение в летний сезон.</li>
+        </ul>
+      </div>
+      <div class="lang lang-cg">
+        <div class="card-header-flex"><h2>Plac i infrastruktura</h2><span class="floor-index">DETALJI</span></div>
+        <ul>
+          <li><strong>Privatni plac:</strong> Potpuno ograđen teren sa kapijom i rasvjetom.</li>
+          <li><strong>Parking:</strong> Zatvorena garaža za 1 vozilo + popločan parking u dvorištu za 3 automobila.</li>
+          <li><strong>Prostor za bazen:</strong> Pripremljen ravan teren iza kuće predviđen za privatni bazen.</li>
+          <li><strong>Bašta:</strong> Na placu rastu palme, stabla limete, lovor i kupine.</li>
+          <li><strong>Komunikacije:</strong> Gradska voda i kompletna gradska kanalizaciona mreža.</li>
+          <li><strong>Stabilnost:</strong> Stabilan pritisak vode i pouzdano snabdijevanje strujom.</li>
+        </ul>
+      </div>
+      <div class="lang lang-en">
+        <div class="card-header-flex"><h2>Grounds & Utilities</h2><span class="floor-index">DETAILS</span></div>
+        <ul>
+          <li><strong>Private Grounds:</strong> Fully enclosed property perimeter with a secure entrance gate and exterior lighting.</li>
+          <li><strong>Parking Facilities:</strong> Enclosed indoor garage for 1 vehicle plus an outdoor yard parking area for 3 cars.</li>
+          <li><strong>Pool Zone:</strong> Dedicated backyard area prepped for installing a private swimming pool.</li>
+          <li><strong>Garden:</strong> Established landscaping featuring palm trees, lime trees, bay laurel, and blackberries.</li>
+          <li><strong>Utilities:</strong> Connected directly to municipal water mains and standard city sewerage.</li>
+          <li><strong>Reliability:</strong> Consistent water pressure and dependable utility performance throughout summer.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LOCATION -->
+    <div class="card" id="location-section">
+      <div class="lang lang-ru active">
+        <div class="card-header-flex"><h2>Локация и окружение</h2><span class="floor-index">ОКРУЖЕНИЕ</span></div>
+        <p class="card-subtitle"><strong>Расположение:</strong> Престижный и тихий исторический район Ульциня прямо над Старым Городом (Stari Grad).</p>
+        <ul>
+          <li><strong>Пляж «Mala Plaža»:</strong> 10 минут пешком по прямой живописной лестнице к центральной бухте и набережной.</li>
+          <li><strong>Супермаркеты:</strong> В 5–7 минутах ходьбы находятся популярные магазины <strong>Idea</strong> и <strong>Voli</strong>.</li>
+          <li><strong>Инфраструктура:</strong> Ближайшие пекарни в 3–5 минутах, центральный городской рынок — в 10 минутах пешком.</li>
+          <li><strong>Природа и отдых:</strong> Рядом расположен реликтовый сосновый бор, Женский пляж и лучшие видовые рестораны.</li>
+        </ul>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.502289437375!2d19.209810574831558!3d41.925056962474784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134e130062d549ff%3A0xb1fc708d0038371!2sUlcinj%20Residence!5e0!3m2!1sru!2s!4v1789372177155!5m2!1sru!2s" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/zWJVj47up147ors76" target="_blank" class="map-btn">📍 Открыть на Google Картах</a>
+      </div>
+      <div class="lang lang-cg">
+        <div class="card-header-flex"><h2>Lokacija i okruženje</h2><span class="floor-index">OKRUŽENJE</span></div>
+        <p class="card-subtitle"><strong>Pozicija:</strong> Miran i istorijski dio Ulcinja smješten neposredno iznad Starog Grada.</p>
+        <ul>
+          <li><strong>Plaža «Mala Plaža»:</strong> 10 minuta hoda uređenim stepeništem direktno do pješčane plaže i šetališta.</li>
+          <li><strong>Supermarketi:</strong> Na 5–7 minuta hoda nalaze se marketi <strong>Idea</strong> i <strong>Voli</strong>.</li>
+          <li><strong>Sadržaji:</strong> Pekare na 3–5 minuta, gradska pijaca na 10 minuta hoda.</li>
+          <li><strong>Priroda:</strong> U neposrednoj blizini su Borova Šuma, Ženska Plaža i tradicionalni restorani.</li>
+        </ul>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.502289437375!2d19.209810574831558!3d41.925056962474784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134e130062d549ff%3A0xb1fc708d0038371!2sUlcinj%20Residence!5e0!3m2!1sru!2s!4v1789372177155!5m2!1sru!2s" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/zWJVj47up147ors76" target="_blank" class="map-btn">📍 Otvori na Google Mapama</a>
+      </div>
+      <div class="lang lang-en">
+        <div class="card-header-flex"><h2>Location & Surroundings</h2><span class="floor-index">SURROUNDINGS</span></div>
+        <p class="card-subtitle"><strong>Area:</strong> Prestigious and scenic residential zone situated directly above historic Old Town Ulcinj (Stari Grad).</p>
+        <ul>
+          <li><strong>Mala Plaža Beach:</strong> A 10-minute walk down a direct pedestrian pathway straight to the central sandy bay.</li>
+          <li><strong>Supermarkets:</strong> 5 to 7 minutes walking distance to major <strong>Idea</strong> and <strong>Voli</strong> supermarkets.</li>
+          <li><strong>Amenities:</strong> Local bakeries within 3–5 minutes, central Green Market within a 10-minute walk.</li>
+          <li><strong>Nature & Leisure:</strong> Close proximity to the Pine Wood forest, Women's Beach, and top seafood dining.</li>
+        </ul>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.502289437375!2d19.209810574831558!3d41.925056962474784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134e130062d549ff%3A0xb1fc708d0038371!2sUlcinj%20Residence!5e0!3m2!1sru!2s!4v1789372177155!5m2!1sru!2s" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/zWJVj47up147ors76" target="_blank" class="map-btn">📍 Open on Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+      document.getElementById('btn-' + lang).classList.add('active');
+    }
+  </script>
+</body>
+</html>
