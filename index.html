@@ -203,8 +203,8 @@
       <div class="lang lang-ru">
         <div class="card-header-flex"><h2>Ключевые параметры и юридический статус</h2><span class="floor-index">ХАРАКТЕРИСТИКИ</span></div>
         <ul>
-          <li><strong>Общая площадь участка:</strong> 583 м² (пятно застройки дома 217 м² + приватный двор 366 м²).</li>
-          <li><strong>Общая площадь помещений:</strong> 426 м² суммарной зарегистрированной площади.</li>
+          <li><strong>Общая площадь участка:</strong> 583 м² (дом занимает 217 м² по основанию + свободный закрытый двор 366 м²).</li>
+          <li><strong>Общая площадь помещений:</strong> 426 м² зарегистрированной площади по кадастру.</li>
           <li><strong>Юридическая чистота:</strong> Собственность 1/1 (List nepokretnosti 4572 KO Ulcinj), <strong>полное отсутствие обременений и залогов</strong> (Ne postoje tereti i ograničenja).</li>
           <li><strong>Класс объекта:</strong> Премиальная вилла / инвест-объект с 3 независимыми жилыми уровнями.</li>
         </ul>
@@ -492,10 +492,6 @@
       document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
       document.getElementById('lightbox').classList.add('active');
     }
-
-    (function() {
-      // safe fallback
-    })();
 
     function closeLightbox(e) {
       if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')) {
